@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PixelErase Pro — remove image backgrounds automatically or remove specific text with a guided manual workflow." />
+  <meta name="theme-color" content="#080a12" />
+  <title>PixelErase Pro — AI Background Remover</title>
+</head>
+<body>
+  <div id="intro" class="intro">
+    <canvas id="introCanvas"></canvas>
+    <div class="intro-overlay">
+      <div class="intro-badge">AI IMAGE STUDIO</div>
+      <h1>PIXEL<span>ERASE</span></h1>
+      <p>Remove backgrounds. Clean unwanted text. Keep the subject.</p>
+      <div class="intro-demo">
+        <div class="demo-card"><span>01</span><b>UPLOAD</b></div>
+        <div class="demo-line"></div>
+        <div class="demo-card active"><span>02</span><b>ERASE</b></div>
+        <div class="demo-line"></div>
+        <div class="demo-card"><span>03</span><b>EXPORT</b></div>
+      </div>
+      <div class="intro-progress"><i></i></div>
+      <small>Preparing your creative workspace</small>
+    </div>
+  </div>
+
+  <header class="nav">
+    <a class="brand" href="#"><span class="brand-mark">P</span><span>PixelErase <em>Pro</em></span></a>
+    <div class="nav-pill">AI-powered image cleanup</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">NEXT-GEN IMAGE EDITING</div>
+        <h2>Erase the background.<br><span>Keep the magic.</span></h2>
+        <p>Drop in any picture and create a clean transparent PNG in your browser. Need something more specific? Use the text-removal workflow to locate unwanted words and prepare them for cleanup.</p>
+        <div class="trust-row"><span>✓ Browser-based</span><span>✓ No signup</span><span>✓ PNG export</span></div>
+      </div>
+      <div class="hero-orb"><div class="orb-ring"></div><div class="orb-core">AI</div></div>
+    </section>
+
+    <section class="workspace">
+      <div class="tabs">
+        <button class="tab active" data-mode="background">Automatic Background</button>
+        <button class="tab" data-mode="text">Remove Specific Text</button>
+      </div>
+
+      <div class="dropzone" id="dropzone">
+        <input id="fileInput" type="file" accept="image/*" hidden />
+        <div class="upload-icon">↑</div>
+        <h3>Drop your image here</h3>
+        <p>or click to browse · JPG, PNG, WEBP</p>
+        <button id="chooseBtn" class="primary">Choose Image</button>
+      </div>
+
+      <div id="editor" class="editor hidden">
+        <div class="editor-toolbar">
+          <div>
+            <strong id="fileName">image</strong>
+            <span id="status" class="status">Ready</span>
+          </div>
+          <div class="toolbar-actions">
+            <button id="processBtn" class="primary">Remove Background</button>
+            <button id="downloadBtn" class="secondary" disabled>Download PNG</button>
+            <button id="resetBtn" class="ghost">Reset</button>
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <div class="canvas-panel">
+            <div class="panel-title">Original</div>
+            <canvas id="sourceCanvas"></canvas>
+          </div>
+          <div class="canvas-panel checker">
+            <div class="panel-title">Result</div>
+            <canvas id="resultCanvas"></canvas>
+            <div id="emptyResult" class="empty-result">Your result will appear here</div>
+          </div>
+        </div>
+
+        <div id="textTools" class="text-tools hidden">
+          <div>
+            <h3>Specific text removal</h3>
+            <p>Type the exact text you want to find. OCR will locate matching text; review the highlighted regions before applying cleanup.</p>
+          </div>
+          <div class="text-row">
+            <input id="textQuery" placeholder="Example: SALE 50%" />
+            <button id="findTextBtn" class="primary">Find Text</button>
+          </div>
+          <div id="ocrStatus" class="status"></div>
+          <div id="ocrResults"></div>
+          <p class="note">Note: browser-only OCR can locate text, but seamless object/text inpainting is not guaranteed on every image. The selected area can be cleared/filled for simple backgrounds.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <article><span>01</span><h3>One-click background removal</h3><p>AI segmentation runs locally after the model is downloaded, so the image can be processed without sending it to a background-removal API.</p></article>
+      <article><span>02</span><h3>Text finder</h3><p>Enter unwanted wording and OCR searches the image for matching regions, giving you a review step instead of blindly deleting pixels.</p></article>
+      <article><span>03</span><h3>Transparent export</h3><p>Download a clean PNG with transparency for thumbnails, products, profile graphics and design work.</p></article>
+    </section>
+
+    <footer>PixelErase Pro · Built as a client-side demo · Replace branding, legal pages and production limits before commercial launch.</footer>
+  </main>
+
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>
